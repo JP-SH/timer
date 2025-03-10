@@ -16,8 +16,17 @@ class Timer {
     clearInterval(this.interval);
   };
   tick = () => {
-    console.log('tick')
+    const timeRemaining = this.timeRemaining;
+    // the reason we dont have to use parens() when calling timeRemaining is because we used 'get' when we made the function. Get allows you to treat it as an instance variable. Get automatically invokes it.
+    this.timeRemaining = timeRemaining - 1;
   };
+
+  get timeRemaining() {
+    return parseFloat(this.durationInput.value);
+  }
+  set timeRemaining(time) {
+    this.durationInput.value = time;
+  }
 }
 
 const durationInput = document.querySelector('#duration');
